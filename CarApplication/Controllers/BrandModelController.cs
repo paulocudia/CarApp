@@ -16,7 +16,7 @@ namespace CarApplication.Controllers
         private CarModelContext db = new CarModelContext();
 
         // GET: /BrandModel/
-        public ActionResult Index(int? SelectedManufacturer)
+        public ActionResult Index(int? SelectedManufacturer, string searchString)
         {
             var manufacturer = db.Manufacturer.OrderBy(q => q.BrandName).ToList();
             ViewBag.SelectedManufacturer = new SelectList(manufacturer, "ManufacturerID", "BrandName", SelectedManufacturer);
@@ -27,6 +27,11 @@ namespace CarApplication.Controllers
                 .OrderBy(d => d.ModelID)
                 .Include(d => d.Manufacturer);
             var sql = manufacturer.ToString();
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                brandModel = brandModel.Where(s => s.ModelName.Contains(searchString));
+            }
             return View(brandModel.ToList());
 
             //return View(db.BrandModel.ToList());

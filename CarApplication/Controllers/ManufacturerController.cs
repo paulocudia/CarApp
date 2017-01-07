@@ -16,10 +16,16 @@ namespace CarApplication.Controllers
         private CarModelContext db = new CarModelContext();
 
         // GET: /Manufacturer/
-        public ActionResult Index()
-        {
+        public ActionResult Index(string searchString)
+        {     
             var manufacturer = from s in db.Manufacturer
                            select s;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                manufacturer = manufacturer.Where(s => s.BrandName.Contains(searchString));
+            }
+
             manufacturer = manufacturer.OrderBy(s => s.BrandName);
             return View(manufacturer.ToList());
         }
