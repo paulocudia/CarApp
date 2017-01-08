@@ -2,6 +2,9 @@
     ViewBag.Title = "Home Page";
 }
 <!-- HOME -->
+
+<link href="~/Layout.css" rel="stylesheet" />
+
 <div class="" id="popupContainer">
     <div class="breadcrumbs text-muted">
 
@@ -50,31 +53,35 @@
             <br />
             <div class="" style="">
                 <div class="boxTitle">
-                    Mission
-                </div>
-                <p style="padding: 0 10px">
-                    Proin pharetra nisl quis varius luctus. Sed eleifend rutrum nunc ut ullamcorper.
-                </p>
-                <p style="padding: 0 10px">
-                    Aenean sed auctor mauris, nec scelerisque enim. Nunc nec erat facilisis, finibus risus in, iaculis dolor.
-                </p>
+                    <input type="text" placeholder="Name" id="userName"/>
+                    <input type="text" placeholder="Message" id="msg" />
+                    <button class="btn btn-primary" id="SendMessage">Send</button>
 
+                </div>
             </div>
 
             <div class="" style="">
                 <div class="boxTitle">
-                    Vision
+                    <ul id="listMessages"></ul>               
                 </div>
-                <p style="padding: 0 10px">
-                    Proin pharetra nisl quis varius luctus. Sed eleifend rutrum nunc ut ullamcorper.
-                </p>
-                <p style="padding: 0 10px">
-                    Aenean sed auctor mauris, nec scelerisque enim. Nunc nec erat facilisis, finibus risus in, iaculis dolor.
-                </p>
             </div>
         </div>
     </div>
 
     <div ta-bind ng-model="vm.content" class="word-break"></div>
 
+
+
 </div>
+@section scripts{
+
+    <script src="~/Scripts/jquery.signalR-2.2.1.js"></script>
+    <script src="~/SignalR/hubs"></script>
+    <script src="~/Scripts/knockout-3.4.0.js"></script>
+    <script src="~/Scripts/SendSurf.js"></script>
+    <script>
+        document.getElementById('SendMessage').onclick = function () {
+            document.getElementById('userName').readOnly = true;
+        };
+    </script>
+}

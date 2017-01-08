@@ -8,6 +8,7 @@ using System.Web.Routing;
 using System.Data.Entity;
 using CarApplication.DAL;
 
+
 namespace CarApplication
 {
     public class MvcApplication : System.Web.HttpApplication
@@ -16,7 +17,8 @@ namespace CarApplication
         {
             Database.SetInitializer(new DropCreateDatabaseIfModelChanges<CarModelContext>());
 
-            AreaRegistration.RegisterAllAreas();
+            AreaRegistration.RegisterAllAreas();            
+           
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
